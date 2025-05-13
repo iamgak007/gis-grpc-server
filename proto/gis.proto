@@ -1,0 +1,41 @@
+syntax = "proto3";
+
+package gis;
+
+option go_package = "/;gis";
+
+service MadinaGisService {
+  rpc GetLocationInfo(LocationRequest) returns (LocationResponse);
+  rpc GetParcelStreetData(LocationRequest) returns (ParcelStreetResponse);
+  rpc GetSatelliteViewData(Empty) returns (SatelliteResponse);
+  rpc ConvertUTMToLatLon(UTMRequest) returns (LatLonResponse);
+}
+
+message Empty {}
+
+message LocationRequest {
+  string latitude = 1;
+  string longitude = 2;
+}
+
+message LocationResponse {
+  map<string, string> data = 1;
+}
+
+message ParcelStreetResponse {
+  map<string, string> data = 1;
+}
+
+message SatelliteResponse {
+  map<string, string> data = 1;
+}
+
+message UTMRequest {
+  string x = 1;
+  string y = 2;
+}
+
+message LatLonResponse {
+  double latitude = 1;
+  double longitude = 2;
+}
